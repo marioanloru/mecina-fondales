@@ -1,7 +1,9 @@
 <template>
   <v-app>
+    <v-app-bar fixed width="100%">
+      <Header style="width: 100%"/>
 
-    <Header/>
+    </v-app-bar>
 
     <!-- Sizes your content based upon application components -->
     <v-main>
@@ -38,3 +40,9 @@ export default {
   })
 };
 </script>
+
+<style>
+ header:first-child {
+   padding: 0px;
+ }
+</style>

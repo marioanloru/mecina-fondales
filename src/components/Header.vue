@@ -4,7 +4,8 @@
     flat
     tile
   >
-    <v-toolbar>
+    <v-app-bar fixed width="100%">
+      
       <v-tabs>
         <v-tab v-for="tab in tabs" v-bind:key="tab.name" :to="tab.path"> {{tab.name}}</v-tab>
       </v-tabs>
@@ -22,7 +23,8 @@
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
-    </v-toolbar>
+
+    </v-app-bar>
   </v-card>
 </template>
 

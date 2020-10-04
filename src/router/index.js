@@ -1,14 +1,19 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+//  import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "*",
+    redirect: "/home"
+  },
+  {
+    path: "/home",
     name: "Inicio",
-    component: () => Home
+    component: () =>
+      import(/* webpackChunkName: "home" */ "../views/Home.vue")
   },
   {
     path: "/actividades",
@@ -25,8 +30,7 @@ const routes = [
   {
     path: "/comida",
     name: "Comida",
-    component: () =>
-      import(/* webpackChunkName: "food" */ "../views/Food.vue")
+    component: () => import(/* webpackChunkName: "food" */ "../views/Food.vue")
   },
   {
     path: "/lugares",
