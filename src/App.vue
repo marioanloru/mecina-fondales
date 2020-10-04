@@ -15,7 +15,12 @@
       <v-container fluid>
 
         <!-- If using vue-router -->
-        <v-img style="position: absolute;" src="https://static.vecteezy.com/system/resources/previews/000/192/247/non_2x/vector-website-under-construction.jpg"></v-img>
+        <v-row>
+          <v-col col col-12 >
+            <v-img style="position: absolute;" src="https://static.vecteezy.com/system/resources/previews/000/192/247/non_2x/vector-website-under-construction.jpg"></v-img>
+
+          </v-col>
+        </v-row>
       
         <!--<router-view></router-view>-->
       </v-container>
