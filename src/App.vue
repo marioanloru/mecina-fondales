@@ -1,39 +1,35 @@
 <template>
   <v-app>
-    <!--<v-navigation-drawer app> -->
-      <!-- -->
-    <!-- </v-navigation-drawer>-->
 
-    <v-app-bar app>
-      <!-- -->
-    </v-app-bar>
+    <Header/>
 
     <!-- Sizes your content based upon application components -->
-    <v-main style="background-color: #ffeec3;">
-
-      <!-- Provides the application the proper gutter -->
+    <v-main>
       <v-container fluid>
-
-        <!-- If using vue-router -->
-        <v-img style="position: absolute;" src="https://static.vecteezy.com/system/resources/previews/000/192/247/non_2x/vector-website-under-construction.jpg"></v-img>
-      
-        <!--<router-view></router-view>-->
+        <transition>
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
+        </transition>
       </v-container>
     </v-main>
 
-    <v-footer app>
-      <!-- -->
-    </v-footer>
+    <Footer/>
+
   </v-app>
 </template>
 
 <script>
 //  import HelloWorld from "./components/HelloWorld";
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
 
   components: {
+    Header,
+    Footer,
     //  HelloWorld
   },
 
