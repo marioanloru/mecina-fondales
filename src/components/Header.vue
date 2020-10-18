@@ -36,22 +36,22 @@ export default {
       name: "Inicio",
       path: "/home",
     },
-    {
+    /*  {
       name: "Actividades",
       path: "/actividades",
     },
     {
       name: "Rutas",
       path: "/rutas",
-    },
+    },  */
     {
       name: "Comida",
       path: "/comida",
     },
-    {
+    /*  {
       name: "Lugares",
       path: "/lugares",
-    }]   
+    }*/]   
   })
 }
 </script>

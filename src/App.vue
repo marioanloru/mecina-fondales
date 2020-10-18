@@ -6,7 +6,7 @@
     </v-app-bar>
 
     <!-- Sizes your content based upon application components -->
-    <v-main>
+    <v-main class="main">
       <v-container fluid>
         <transition>
           <keep-alive>
@@ -44,5 +44,24 @@ export default {
 <style>
  header:first-child {
    padding: 0px;
+ }
+ .main {
+   margin-top: 64px;
+ }
+
+ h3 {
+   font-size: 13px;
+ }
+ 
+ span {
+   font-size: 12px;
+ }
+
+ .carousel {
+   max-height: 450px;
+ }
+
+ .small-carousel {
+   max-height: 350px;
  }
 </style>

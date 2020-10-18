@@ -1,6 +1,6 @@
 <template>
   <v-footer
-    v-bind="attrs"
+
     dark
     padless
   >
@@ -10,27 +10,86 @@
       class="indigo lighten-1 white--text text-center"
       style="width: 100%;"
     >
-      <v-card-text>
-        <v-btn
-          v-for="icon in icons"
-          :key="icon"
-          class="mx-4 white--text"
-          icon
-        >
-          <v-icon size="24px">
-            {{ icon }}
-          </v-icon>
-        </v-btn>
-      </v-card-text>
-
-      <v-card-text class="white--text pt-0">
-        ¿Quieres anunciarte? Contacte aqui
-      </v-card-text>
 
       <v-divider></v-divider>
 
       <v-card-text class="white--text">
-        2020 — <strong>Mecina Fondales - Mario López</strong>
+        <v-dialog
+          v-model="confirmDialog"
+          persistent
+          max-width="290"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              v-for="icon in icons"
+              @click="showConfirm(icon.url)"
+              :key="icon"
+              class="mx-4 white--text"
+              icon
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon size="24px">
+                {{ icon.iconName }}
+              </v-icon>
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title class="headline">
+              <h3>Se abrirá el enlace en una nueva página</h3>
+            </v-card-title>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="confirmDialog = false"
+              >
+                Cancelar
+              </v-btn>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="confirmDialog = false;"
+              >
+                <a :href="link" target="_blank" style="text-decoration: none;">Continuar</a>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <span>2020 — <strong>Mecina Fondales - Mario López</strong></span>
+        
+        <v-dialog
+          v-model="contactDialog"
+          width="500"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <span v-on="on" v-bind="attrs" style="cursor: pointer;"> — ¿Quieres anunciarte o mejorar lo ya existente? Haga click <span>aquí</span></span>
+
+          </template>
+
+          <v-card>
+            <v-card-title>
+              Correo de contacto
+            </v-card-title>
+
+            <v-card-text>
+              Para más información, cualquier duda o sugerencia: mario_neutro@hotmail.com
+            </v-card-text>
+
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="primary"
+                text
+                @click="contactDialog = false"
+              >
+                Continuar
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>        
       </v-card-text>
     </v-card>
   </v-footer>
@@ -41,14 +100,30 @@ export default {
   name: "Footer",
   data: () => ({
     icons: [
-      'mdi-facebook',
-      'mdi-twitter',
-      'mdi-linkedin',
-      'mdi-instagram',
+      {
+        iconName: 'mdi-facebook',
+        url: 'https://www.facebook.com/groups/mecinafondales/'
+      }
     ],
     attrs: {
       absolute: true
     },
-  })
+    confirmDialog: false,
+    contactDialog: false,
+    link: null,
+  }),
+  methods: {
+    showConfirm(link) {
+      this.link = link;
+      this.confirmDialog = true;
+    },
+    openLink(path) {
+      console.log('PATTH QUE LLEGA YU LINK', path, '---', this.link)
+      const routeData = this.$router.resolve({ name: path });
+      window.open(routeData.href, '_blank');
+      this.confirmDialog = false;
+      this.link = null;
+    },
+  }
 }
 </script>
