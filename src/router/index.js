@@ -12,8 +12,7 @@ const routes = [
   {
     path: "/home",
     name: "Inicio",
-    component: () =>
-      import(/* webpackChunkName: "home" */ "../views/Home.vue")
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue")
   },
   {
     path: "/mecina",
@@ -25,7 +24,7 @@ const routes = [
     path: "/mecinilla",
     name: "Mecinilla",
     component: () =>
-      import(/* webpackChunkName: "mecinilla" */ "../views/Mecina.vue")
+      import(/* webpackChunkName: "mecinilla" */ "../views/Mecinilla.vue")
   },
   {
     path: "/fondales",
@@ -61,7 +60,10 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior() {
+    document.getElementById("app").scrollIntoView();
+  }
 });
 
 export default router;

@@ -1,24 +1,15 @@
 <template>
-  <v-footer
-
-    dark
-    padless
-  >
+  <v-footer dark padless>
     <v-card
       flat
       tile
       class="indigo lighten-1 white--text text-center"
       style="width: 100%;"
     >
-
       <v-divider></v-divider>
 
       <v-card-text class="white--text">
-        <v-dialog
-          v-model="confirmDialog"
-          persistent
-          max-width="290"
-        >
+        <v-dialog v-model="confirmDialog" persistent max-width="290">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               v-for="icon in icons"
@@ -40,32 +31,27 @@
             </v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn
-                color="blue darken-1"
-                text
-                @click="confirmDialog = false"
-              >
+              <v-btn color="blue darken-1" text @click="confirmDialog = false">
                 Cancelar
               </v-btn>
-              <v-btn
-                color="blue darken-1"
-                text
-                @click="confirmDialog = false;"
-              >
-                <a :href="link" target="_blank" style="text-decoration: none;">Continuar</a>
+              <v-btn color="blue darken-1" text @click="confirmDialog = false">
+                <a :href="link" target="_blank" style="text-decoration: none;"
+                  >Continuar</a
+                >
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
         <span>2020 — <strong>Mecina Fondales - Mario López</strong></span>
-        
-        <v-dialog
-          v-model="contactDialog"
-          width="500"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <span v-on="on" v-bind="attrs" style="cursor: pointer;"> — ¿Quieres anunciarte o mejorar lo ya existente? Haga click <span>aquí</span></span>
 
+        <v-dialog v-model="contactDialog" width="500">
+          <template v-slot:activator="{ on, attrs }">
+            <span v-on="on" v-bind="attrs" style="cursor: pointer;">
+              —
+              <span style="text-decoration: underline;"
+                >¿Quieres anunciarte?</span
+              ></span
+            >
           </template>
 
           <v-card>
@@ -74,22 +60,18 @@
             </v-card-title>
 
             <v-card-text>
-              Para más información, cualquier duda o sugerencia: mario_neutro@hotmail.com
+              Para más información, cualquier duda o sugerencia:
+              mario_neutro@hotmail.com
             </v-card-text>
-
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn
-                color="primary"
-                text
-                @click="contactDialog = false"
-              >
+              <v-btn color="primary" text @click="contactDialog = false">
                 Continuar
               </v-btn>
             </v-card-actions>
           </v-card>
-        </v-dialog>        
+        </v-dialog>
       </v-card-text>
     </v-card>
   </v-footer>
@@ -101,8 +83,8 @@ export default {
   data: () => ({
     icons: [
       {
-        iconName: 'mdi-facebook',
-        url: 'https://www.facebook.com/groups/mecinafondales/'
+        iconName: "mdi-facebook",
+        url: "https://www.facebook.com/groups/mecinafondales/"
       }
     ],
     attrs: {
@@ -110,7 +92,7 @@ export default {
     },
     confirmDialog: false,
     contactDialog: false,
-    link: null,
+    link: null
   }),
   methods: {
     showConfirm(link) {
@@ -118,12 +100,11 @@ export default {
       this.confirmDialog = true;
     },
     openLink(path) {
-      console.log('PATTH QUE LLEGA YU LINK', path, '---', this.link)
       const routeData = this.$router.resolve({ name: path });
-      window.open(routeData.href, '_blank');
+      window.open(routeData.href, "_blank");
       this.confirmDialog = false;
       this.link = null;
-    },
+    }
   }
-}
+};
 </script>

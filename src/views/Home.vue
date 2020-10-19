@@ -1,7 +1,36 @@
 <template>
   <v-container fluid>
+    <v-dialog v-model="laptopMessage" width="500">
+      <v-card>
+        <v-card-title class="headline  lighten-2" primary-title>
+          Compatibilidad con portátiles
+        </v-card-title>
+
+        <v-card-text>
+          Esta página web está en versión de pruebas y de momento está pensada
+          para ser utilizada en <b>dispositivos móviles</b>. <br /><br />
+          En poco tiempo estará disponible una versión adaptable que también
+          funcione correctamente en monitores y portátiles. <br /><br />
+          Se aconseja volver a acceder desde un dispositivo móvil, ya que la
+          página puede tener un comportamiento inesperado para este tamaño de
+          pantalla.
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" flat @click="laptopMessage = false">
+            LO ENTIENDO
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-row dense>
-      <v-col v-for="card in cards" :key="card.title" :cols="card.flex" style="padding: 8px;">
+      <v-col
+        v-for="card in cards"
+        :key="card.title"
+        :cols="card.flex"
+        style="padding: 8px;"
+      >
         <v-hover v-if="card.clickable" v-slot:default="{ hover }">
           <v-card
             @click="changeView(card.path)"
@@ -16,7 +45,7 @@
               height="25rem"
             >
               <v-card-title>
-                <span class="title-pueblos">{{card.title}}</span>
+                <span class="title-pueblos">{{ card.title }}</span>
               </v-card-title>
             </v-img>
           </v-card>
@@ -37,14 +66,23 @@
       <div class="body">
         <h1>Mecina Fondales</h1>
         <span>
-          En el corazón de la Alpujarra granadina se encuentra Mecina Fondales, escalón natural entre Sierra Nevada y la costa mediterránea. <br><br>
+          En el corazón de la Alpujarra granadina se encuentra Mecina Fondales,
+          escalón natural entre Sierra Nevada y la costa mediterránea.
+          <br /><br />
           Conserva y define a la perfección la esencia de lo que es un
-          <i>pueblo alpujarreño</i>. <br><br>
-          Un lugar recóndito que ha sobrevivido al paso del turismo y del tiempo, tradiciones que se conservan, así como singular arquitectura de sus viviendas, perfectamente adaptadas al irregular terreno y climatología de la zona, con un caracter donde se refleja la memoria de su pasado morisco.<br><br>
+          <i>pueblo alpujarreño</i>. <br /><br />
+          Un lugar recóndito que ha sobrevivido al paso del turismo y del
+          tiempo, tradiciones que se conservan, así como singular arquitectura
+          de sus viviendas, perfectamente adaptadas al irregular terreno y
+          climatología de la zona, con un caracter donde se refleja la memoria
+          de su pasado morisco.<br /><br />
           Dividido en 3 núcleos:
           <b>Mecina, Mecinilla y Fondales</b> que conforman la pedanía de
-          <b>Mecina Fondales</b> y que conviven como uno solo, próximo al margen derecho del rio Trevélez. <br><br>
-          Explora sus calles, conoce sus costumbres, satisface tu estómago con sus suculentos platos y déjate embriagar por un entorno único que visites te verás obligado a volver.
+          <b>Mecina Fondales</b> y que conviven como uno solo, próximo al margen
+          derecho del rio Trevélez. <br /><br />
+          Explora sus calles, conoce sus costumbres, satisface tu estómago con
+          sus suculentos platos y déjate embriagar por un entorno único que
+          visites te verás obligado a volver.
         </span>
       </div>
     </v-row>
@@ -59,10 +97,7 @@
           @update:center="centerUpdate"
           @update:zoom="zoomUpdate"
         >
-          <l-tile-layer
-            :url="url"
-            :attribution="attribution"
-          />
+          <l-tile-layer :url="url" :attribution="attribution" />
           <l-marker :lat-lng="popupMecina">
             <l-popup>
               <div>
@@ -86,7 +121,6 @@
           </l-marker>
         </l-map>
       </v-card>
-
     </v-row>
   </v-container>
 </template>
@@ -102,7 +136,7 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LPopup,
+    LPopup
   },
   data: () => ({
     cards: [
@@ -122,7 +156,7 @@ export default {
       },
       {
         title: "Mecinilla",
-        path: "/mecina-fondales",
+        path: "/mecinilla",
         src: "mecinilla",
         flex: 4,
         clickable: true
@@ -137,8 +171,8 @@ export default {
       { src: "plano", flex: 0, clickable: false }
     ],
     zoom: 16,
-    center: latLng(36.927530, -3.321636),
-    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    center: latLng(36.92753, -3.321636),
+    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     attribution:
       '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     popupMecina: latLng(36.929812, -3.323031),
@@ -150,11 +184,16 @@ export default {
     mapOptions: {
       zoomSnap: 0.5
     },
-    showMap: true
+    showMap: true,
+    laptopMessage: false
   }),
+  created() {
+    if (window.innerWidth > 500) {
+      this.laptopMessage = true;
+    }
+  },
   methods: {
     changeView(path) {
-      console.log('CAMBIO A ESTA VISTA!', path)
       if (path) {
         const self = this;
         self.$router.push(path);
