@@ -42,7 +42,7 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-        <span>2020 — <strong>Mecina Fondales - Mario López</strong></span>
+        <span>2020 — <strong>Mecina Fondales</strong></span>
 
         <v-dialog v-model="contactDialog" width="500">
           <template v-slot:activator="{ on, attrs }">
@@ -61,7 +61,6 @@
 
             <v-card-text>
               Para más información, cualquier duda o sugerencia:
-              mario_neutro@hotmail.com
             </v-card-text>
 
             <v-card-actions>

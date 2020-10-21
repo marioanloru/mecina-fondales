@@ -149,7 +149,7 @@ export default {
       },
       {
         title: "Mecina",
-        path: "/mecinilla",
+        path: "/mecina",
         src: "mecina",
         flex: 4,
         clickable: true

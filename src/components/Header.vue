@@ -7,7 +7,7 @@
         >
       </v-tabs>
 
-      <v-spacer></v-spacer>
+      <!--<v-spacer></v-spacer>
 
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
@@ -19,7 +19,7 @@
 
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      </v-btn>-->
     </v-app-bar>
   </v-card>
 </template>
@@ -37,18 +37,18 @@ export default {
         name: "Actividades",
         path: "/actividades"
       },
-      {
+      /*{
         name: "Rutas",
         path: "/rutas"
-      },
+      },  */
       {
         name: "Comida",
         path: "/comida"
-      },
-      {
+      }
+      /*  {
         name: "Lugares",
         path: "/lugares"
-      }
+      } */
     ]
   })
 };

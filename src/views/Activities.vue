@@ -211,8 +211,24 @@ export default {
     showIntervalLabel(interval) {
       return interval.minute === 0;
     },
-    getYear(date) {
-      return date.split("-")[0];
+    getDate(date) {
+      const splitted = date.split("-");
+      const months = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+      ];
+      const parsedMonth = months[splitted[1] - 1];
+      return `${splitted[0]} ${parsedMonth}`;
     }
   }
 };
